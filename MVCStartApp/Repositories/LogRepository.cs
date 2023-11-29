@@ -10,10 +10,10 @@ namespace MVCStartApp.Repositories
     public class LogRepository : ILogRepository
     {
         // ссылка на контекст
-        private readonly LogContext _context;
+        private readonly BlogContext _context;
 
         // Метод-конструктор для инициализации
-        public LogRepository(LogContext context)
+        public LogRepository(BlogContext context)
         {
             _context = context;
         }

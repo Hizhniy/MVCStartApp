@@ -9,12 +9,12 @@ namespace MVCStartApp.Middlewares
     public class LoggingMiddleware
     {
         private readonly RequestDelegate _next;
-        private readonly LogRepository _logRepo;
+        private readonly ILogRepository _logRepo;
 
         /// <summary>
         ///  Middleware-компонент должен иметь конструктор, принимающий RequestDelegate
         /// </summary>
-        public LoggingMiddleware(RequestDelegate next, LogRepository logRepo)
+        public LoggingMiddleware(RequestDelegate next, ILogRepository logRepo)
         {
             _next = next;
             _logRepo = logRepo;
@@ -45,4 +45,3 @@ namespace MVCStartApp.Middlewares
         private static void LogToConsole(HttpContext context) => Console.WriteLine($"[{DateTime.Now}]: New request to http://{context.Request.Host.Value + context.Request.Path}");
     }
 }
-

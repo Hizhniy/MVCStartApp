@@ -27,17 +27,18 @@ namespace MVCStartApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            string connection = Configuration.GetConnectionString("DefaultConnection");
-            
-            services.AddDbContext<BlogContext>(options => options.UseSqlServer(connection));            
-            // регистрация сервиса репозитория для взаимодействия с базой данных
-            services.AddScoped<IBlogRepository, BlogRepository>();
+            string connection = Configuration.GetConnectionString("DefaultConnection");            
+
+            //services.AddDbContext<BlogContext>(options => options.UseSqlServer(connection));            
+            //// регистрация сервиса репозитория для взаимодействия с базой данных
+            //services.AddScoped<IBlogRepository, BlogRepository>();
                         
-            services.AddDbContext<LogContext>(options => options.UseSqlServer(connection), ServiceLifetime.Singleton);
-            // регистрация сервиса репозитория логов для взаимодействия с базой данных            
+            services.AddDbContext<BlogContext>(options => options.UseSqlServer(connection), ServiceLifetime.Singleton);
+            // регистрация сервисов репозитория логов для взаимодействия с базой данных            
+            services.AddSingleton<IBlogRepository, BlogRepository>();
             services.AddSingleton<ILogRepository, LogRepository>();
 
-            services.AddControllersWithViews();            
+            services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

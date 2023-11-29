@@ -3,7 +3,7 @@ using System;
 
 namespace MVCStartApp.Models.DB
 {
-    //[Table("Requests")]
+    [Table("Requests")]
     public class Request
     {
         public Guid Id { get; set; }
